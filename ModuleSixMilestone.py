@@ -25,6 +25,7 @@ def player_action(presentRoom, verb, noun):
         # verifies movement action is valid
         if noun in rooms[presentRoom]:
             currentRoom = rooms[presentRoom][noun]
+            print('you decide to follow the path to the {}'.format(noun))
         else:
             print('not valid breh')
     else:
