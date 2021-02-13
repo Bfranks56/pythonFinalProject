@@ -14,22 +14,22 @@ moveCommands = {'north', 'east', 'south', 'west', 'exit'}
 # Current Player Status function
 def player_status(currentRoom):
     print('_______________________________________')
-    print('you are in the {}'.format(currentRoom))
+    print('You are in the {}'.format(currentRoom))
 
 
-# Player action function. Note: verb is present for future iteration of game
+# Player action function. TODO: verb is present for future iteration of game
 def player_action(presentRoom, verb, noun):
     global currentRoom
-    # verifies action is either go or get. for this version only 'go' is valid.
+    # verifies action is either go or get. TODO: for this version only 'go' is valid.
     if verb == 'go':
         # verifies movement action is valid
         if noun in rooms[presentRoom]:
             currentRoom = rooms[presentRoom][noun]
-            print('you decide to follow the path to the {}'.format(noun))
+            print('You decide to follow the path to the {}'.format(noun))
         else:
-            print('not valid breh')
+            print('There is not path to the {}.'.format(noun))
     else:
-        print('invalid action breh')
+        print('This is not permitted')
 
 
 # Begin Game
@@ -39,7 +39,7 @@ currentRoom = 'Great Hall'
 
 # show game instructions
 print('This is the simplified dragon game')
-print('type the directions: north, east, south, west to move, or exit to quit')
+print('Type the directions: north, east, south, west to move, or exit to quit')
 
 # begin game loop
 while True:
