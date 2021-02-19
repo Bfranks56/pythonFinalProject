@@ -28,6 +28,8 @@ def player_action(presentRoom, verb, noun):
             print('You decide to follow the path to the {}.'.format(noun))
         else:
             print('There is no path to the {}.'.format(noun))
+    elif verb == 'get':
+    #     get the item from the room.
     else:
         print('This is not permitted.')
 
