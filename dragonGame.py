@@ -46,7 +46,6 @@ def player_status(currentRoom):
 
 
 def main():
-    # room dictionary
     rooms = {
         'Lower Decks': {'north': 'Air Lock', 'east': 'Mess Hall', 'item': 'bunch of nothing'},
         'Air Lock': {'south': 'Lower Decks', 'east': 'Meditation Garden'},
@@ -59,10 +58,7 @@ def main():
         'Showers': {'south': 'Sleep Quarters', 'west': 'Mess Hall', 'item': 'shuriken'},
         'Sleep Quarters': {'north': 'Showers', 'west': 'Kitchen', 'item': 'sais'}
     }
-    # move commands
     playerInventory = []
-
-    # # Player action function. Note: verb is present for future iteration of game
 
     # Set Player in Start Room
     currentRoom = 'Lower Decks'
@@ -99,6 +95,7 @@ def main():
         else:
             print('Thanks for Playing!')
             break
+
         # verifies action is either go or get. for this version only 'go' is valid.
         if directive == 'go':
             # verifies movement action is valid
