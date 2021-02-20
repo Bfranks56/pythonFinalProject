@@ -5,14 +5,14 @@
 def player_status(currentRoom):
     print('_______________________________________')
     print(
-        'you are in the {}. Could be spooky, could be calming. I don\'t know what you get into...'.format(
+        'you are in the {}. Could be spooky, could be calming. I don\'t know what you get into...\n'.format(
             currentRoom))
 
 # Begin Game
 
 
 def main():
-    # room dictionary
+    # Variables
     rooms = {
         'Lower Decks': {'north': 'Air Lock', 'east': 'Mess Hall', 'item': ''},
         'Air Lock': {'south': 'Lower Decks', 'east': 'Meditation Garden', 'item': ''},
@@ -25,10 +25,7 @@ def main():
         'Showers': {'south': 'Sleep Quarters', 'west': 'Mess Hall', 'item': 'shuriken'},
         'Sleep Quarters': {'north': 'Showers', 'west': 'Kitchen', 'item': 'slightly rusted pair of sais'}
     }
-    # move commands
     playerInventory = []
-
-    # # Player action function. Note: verb is present for future iteration of game
 
     # Set Player in Start Room
     currentRoom = 'Lower Decks'
@@ -41,15 +38,21 @@ def main():
     while True:
         # Game Logic that runs prior to each player movement
         player_status(currentRoom)
+
+        # Checks if an item is available in the current room and prints appropriate output
         if rooms[currentRoom]['item'] == '':
-            print('you look around, but you don\'t see anything.  whack.')
+            # Conditional for alternate flavor text in final boss room
+            if currentRoom == 'Air Lock':
+                print('Something feels ominous, and you can\'t put that in a bag.')
+            else:
+                print('you look around, but you don\'t see anything.  whack.')
         else:
             print('as you look around, you see a {}'.format(rooms[currentRoom]['item']))
         print('one look in your satchel and you see: {}'.format(playerInventory))
 
         # sets win/lose criteria for final boss
         if currentRoom == 'Air Lock':
-            print('OH NOEZ! MASTER HUMLAE AWAITS YOU!')
+            print('\nOH NOEZ! MASTER HUMLAE AWAITS YOU!\n')
             if len(playerInventory) + 1 < 6:
                 print('Told you sleeping in class would come back to bite you. Master Humlae '
                       'bopped your unprepared butt! YOU LOSE')
@@ -58,14 +61,14 @@ def main():
             break
 
         # action input
-        userInput = input('What are you gonna do wannabe Space Ninja?: ')
+        userInput = input('\nWhat are you gonna do wannabe Space Ninja?:')
         inputMove = userInput.lower().split()
 
         # validate input action and leaves on exit
         if 'exit' not in inputMove:
             # validates a non-exit entry has a valid length
             if len(inputMove) < 2:
-                print('Something went wrong with your input, try again.')
+                print('\nSomething went wrong with your input, try again.')
             else:
                 directive = inputMove[0]
                 # items may be more than one word, re-maps the input move into two values
@@ -74,27 +77,29 @@ def main():
         else:
             print('Thanks for Playing!')
             break
+
         # verifies action is either go or get.
         if directive == 'go':
             # verifies movement action is valid
             if action in rooms[currentRoom]:
                 currentRoom = rooms[currentRoom][action]
-                print('Ninja VANISH!!! You silently Naruto Run {}.'.format(action))
+                print('\nNinja VANISH!!! You silently Naruto Run {}.'.format(action))
             else:
-                print('Did you not pay attention in Space Ninja Awareness class? {} isn\'t an option!'.format(action))
+                print('\nDid you not pay attention in Space Ninja Awareness class? {} isn\'t an option!'.format(action))
+
         # verifies action is either go or get.
         elif directive == 'get':
-            # verifies if item is available to get
+            # verifies if item is available to get, validates on partial match because fat fingers may be annoying, but shouldn't be punished.
             if action in rooms[currentRoom]['item']:
                 if action in playerInventory:
-                    print('Look at you greedypants. you\'ve already got a {} in your satchel...'.format(action))
+                    print('\nLook at you greedypants. you\'ve already got a {} in your satchel...'.format(action))
                 else:
-                    print('got the {}!'.format(rooms[currentRoom]['item']))
+                    print('\nOh Sweet! this could help! better put this {} in your satchel'.format(rooms[currentRoom]['item']))
                     playerInventory.append(rooms[currentRoom]['item'])
                     rooms[currentRoom]['item'] = ''
             else:
-                print('you can\'t do that... are you feeling okay?')
+                print('\nyou can\'t do that... are you feeling okay? what is a {} even?'.format(action))
         else:
-            print('Can\'t do that breh. try again.')
+            print('\nCan\'t do that breh. try again.')
 
 main()
