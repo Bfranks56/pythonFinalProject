@@ -8,9 +8,8 @@ def player_status(currentRoom):
         'you are in the {}. Could be spooky, could be calming. I don\'t know what you get into...\n'.format(
             currentRoom))
 
+
 # Begin Game
-
-
 def main():
     # Variables
     rooms = {
