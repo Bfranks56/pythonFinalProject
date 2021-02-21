@@ -1,11 +1,20 @@
 # Bryant Franks
 
+def show_instructions():  
+   #print a main menu and the commands
+    print('WELCOME TO YOUR SPACE NINJA FINAL EXAM!!!')
+    print('If you want to ever be a full fledged Space Ninja, you need to defeat your sensei: Master Humlae Von Jaarlsburgh.')
+    print('To do that: traverse the space station dojo, and use your Space perception to find the equipment you need to survive his Space Ninja attack!')
+    print('\nTo move around: type the directions: north, east, south, west to move, or exit to quit')
+    print("To add to Inventory: type 'get (item name)'")
+
+
 
 # Current Player Status function
 def player_status(currentRoom):
     print('_______________________________________')
     print(
-        'you are in the {}. Could be spooky, could be calming. I don\'t know what you get into...\n'.format(
+        '\nyou are in the {}. Could be spooky, could be calming. I don\'t know what you get into...\n'.format(
             currentRoom))
 
 
@@ -30,8 +39,7 @@ def main():
     currentRoom = 'Lower Decks'
 
     # show game instructions
-    print('This is a goddamn ninja game')
-    print('type the directions: north, east, south, west to move, or exit to quit')
+    show_instructions()
 
     # begin game loop
     while True:
